@@ -3,7 +3,9 @@ import React from 'react';
 // Mock next/link to a plain <a> to avoid intersection/prefetch behavior
 jest.mock('next/link', () => {
   const React = require('react');
-  return ({ children, href, ...props }: any) => React.createElement('a', { href, ...props }, children);
+  const MockLink = ({ children, href, ...props }: any) => React.createElement('a', { href, ...props }, children);
+  MockLink.displayName = 'MockNextLink';
+  return MockLink;
 });
 
 // Mock next/navigation hooks used by app components
